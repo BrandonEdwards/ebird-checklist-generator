@@ -13,5 +13,10 @@ public class Checklist
         bird = new ArrayList<>();
     }
     
+    public String getSubID ()
+    {
+        return this.subID;
+    }
+    
     
 }

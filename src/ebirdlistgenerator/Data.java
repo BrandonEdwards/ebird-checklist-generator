@@ -25,12 +25,42 @@ public class Data
             Scanner file = new Scanner(f);
             while (file.hasNextLine())
             {
-                //parse
+                parseLine(file.nextLine());
             }
         }
         catch (FileNotFoundException e)
         {
             System.out.println("Could not find file");
         }
+    }
+    
+    private void parseLine (String line)
+    {
+        //Regex from http://stackoverflow.com/questions/15738918/splitting-a-csv-file-with-quotes-as-text-delimiter-using-string-split
+        String[] elements = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+        
+        if (checklistExists(elements[0]))
+        {
+            
+        }
+
+    }
+    
+    private boolean checklistExists (String subID)
+    {
+        if (list.isEmpty())
+        {
+            return false;
+        }
+        
+        for (int i = 0; i < list.size(); i++)
+        {
+            if (list.get(i).getSubID().equals(subID))
+            {
+                return true;
+            }
+        }
+        
+        return false;
     }
 }
