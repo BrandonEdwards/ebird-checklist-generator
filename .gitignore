@@ -1,0 +1,8 @@
+<<<<<<< HEAD
+/build.xml
+/nbproject
+/manifest.mf
+=======
+*.out
+*.exe
+>>>>>>> 6fb7eadbc0667e8463f2def6b45cc7d21f58a1d8
