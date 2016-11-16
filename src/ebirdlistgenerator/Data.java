@@ -42,11 +42,28 @@ public class Data
         //Regex from http://stackoverflow.com/questions/15738918/splitting-a-csv-file-with-quotes-as-text-delimiter-using-string-split
         String[] elements = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
         
-        if (subIDMap.get(elements[0]) == null)
+        if (subIDMap.get(elements[0]) == null) //if checklist does not exist
         {
-            
+            Checklist checklist = new Checklist(elements[0]);
+            list.add(checklist);
+            subIDMap.put(elements[0], list.size() - 1);
+            //populate checklist information
         }
-
+        else
+        {
+            parseBird(line, subIDMap.get(elements[0]));
+        }
+    }
+    
+    private void parseBird (String line, int listIndex)
+    {
+        String[] elements = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+        
+        Bird bird = new Bird(elements[1], elements[2], elements[4], elements[18],
+        elements[19]);
+        
+        //Add this new bird to the checklist it came from
+        list.get(listIndex).bird.add(bird);
     }
     
 }
