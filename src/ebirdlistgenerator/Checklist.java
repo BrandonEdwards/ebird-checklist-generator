@@ -13,6 +13,12 @@ public class Checklist
         bird = new ArrayList<>();
     }
     
+    public Checklist (String subID)
+    {
+        this.subID = subID;
+        bird = new ArrayList<>();
+    }
+    
     public String getSubID ()
     {
         return this.subID;
