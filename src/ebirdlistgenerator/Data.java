@@ -47,12 +47,26 @@ public class Data
             Checklist checklist = new Checklist(elements[0]);
             list.add(checklist);
             subIDMap.put(elements[0], list.size() - 1);
-            //populate checklist information
+            parseChecklist (line, subIDMap.get(elements[0]));
         }
         else
         {
             parseBird(line, subIDMap.get(elements[0]));
         }
+    }
+    
+    private void parseChecklist (String line, int listIndex)
+    {
+        String[] elements = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+        list.get(listIndex).setStateProv(elements[5]);
+        list.get(listIndex).setCounty(elements[6]);
+        list.get(listIndex).setLocation(elements[7]);
+        list.get(listIndex).setLatLong(elements[8], elements[9]);
+        list.get(listIndex).setDateTime(elements[10], elements[11], elements[13]);
+        list.get(listIndex).setDistArea(elements[15], elements[16]);
+        list.get(listIndex).setNumObservers(elements[17]);
+        list.get(listIndex).setComments(elements[20]);
+        parseBird(line, listIndex);
     }
     
     private void parseBird (String line, int listIndex)
