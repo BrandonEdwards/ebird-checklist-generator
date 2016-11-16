@@ -26,9 +26,18 @@ public class Data
         {
             File f = new File(filename);
             Scanner file = new Scanner(f);
+            boolean firstLine = true;
             while (file.hasNextLine())
             {
-                parseLine(file.nextLine());
+                if (firstLine)
+                {
+                    firstLine = false;
+                }
+                else
+                {
+                    parseLine(file.nextLine());                    
+                }
+
             }
         }
         catch (FileNotFoundException e)
@@ -41,6 +50,7 @@ public class Data
     {
         //Regex from http://stackoverflow.com/questions/15738918/splitting-a-csv-file-with-quotes-as-text-delimiter-using-string-split
         String[] elements = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+        System.out.println(elements.length);
         
         if (subIDMap.get(elements[0]) == null) //if checklist does not exist
         {
@@ -65,17 +75,34 @@ public class Data
         list.get(listIndex).setDateTime(elements[10], elements[11], elements[13]);
         list.get(listIndex).setDistArea(elements[15], elements[16]);
         list.get(listIndex).setNumObservers(elements[17]);
-        list.get(listIndex).setComments(elements[20]);
+        if (elements.length == 21)
+        {
+            list.get(listIndex).setComments(elements[20]);            
+        }
+
         parseBird(line, listIndex);
     }
     
     private void parseBird (String line, int listIndex)
     {
         String[] elements = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+        Bird bird;
         
-        Bird bird = new Bird(elements[1], elements[2], elements[4], elements[18],
-        elements[19]);
-        
+        if (elements.length == 18)
+        {
+            bird = new Bird(elements[1], elements[2], elements[4]);
+        }
+        else if (elements.length == 19)
+        {
+            bird = new Bird(elements[1], elements[2], elements[4], elements[18]);
+        }
+        else
+        {
+            bird = new Bird(elements[1], elements[2], elements[4], elements[18],
+            elements[19]);
+                    
+        }
+
         //Add this new bird to the checklist it came from
         list.get(listIndex).bird.add(bird);
     }

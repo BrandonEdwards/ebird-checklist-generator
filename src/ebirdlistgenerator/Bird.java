@@ -22,4 +22,23 @@ public class Bird
         this.breedingCode = breedingCode;
         this.comments = comments;
     }
+    
+    public Bird (String commonName, String scientificName, String count)
+    {
+        this.commonName = commonName;
+        this.scientificName = scientificName;
+        this.count = count;
+        this.breedingCode = "";
+        this.comments = "";
+    }
+    
+    public Bird (String commonName, String scientificName, String count, 
+            String breedingCode)
+    {
+        this.commonName = commonName;
+        this.scientificName = scientificName;
+        this.count = count;
+        this.breedingCode = breedingCode;
+        this.comments = "";
+    }
 }
