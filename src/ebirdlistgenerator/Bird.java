@@ -41,4 +41,14 @@ public class Bird
         this.breedingCode = breedingCode;
         this.comments = "";
     }
+    
+    public String toFile ()
+    {
+        String bird;
+        
+        bird = commonName + " (" + scientificName + ")\t\t" + count + "\n";
+        bird = bird + "\t\t" + comments + "\n";
+        
+        return bird;
+    }
 }

@@ -37,7 +37,6 @@ public class Data
                 {
                     parseLine(file.nextLine());                    
                 }
-
             }
         }
         catch (FileNotFoundException e)
@@ -50,7 +49,6 @@ public class Data
     {
         //Regex from http://stackoverflow.com/questions/15738918/splitting-a-csv-file-with-quotes-as-text-delimiter-using-string-split
         String[] elements = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
-        System.out.println(elements.length);
         
         if (subIDMap.get(elements[0]) == null) //if checklist does not exist
         {
@@ -73,8 +71,13 @@ public class Data
         list.get(listIndex).setLocation(elements[7]);
         list.get(listIndex).setLatLong(elements[8], elements[9]);
         list.get(listIndex).setDateTime(elements[10], elements[11], elements[13]);
-        list.get(listIndex).setDistArea(elements[15], elements[16]);
-        list.get(listIndex).setNumObservers(elements[17]);
+        //This will have to be fixed later
+        if (elements.length > 15)
+        {
+            list.get(listIndex).setDistArea(elements[15], elements[16]);
+            list.get(listIndex).setNumObservers(elements[17]);            
+        }
+
         if (elements.length == 21)
         {
             list.get(listIndex).setComments(elements[20]);            
@@ -88,7 +91,7 @@ public class Data
         String[] elements = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
         Bird bird;
         
-        if (elements.length == 18)
+        if (elements.length <= 18)
         {
             bird = new Bird(elements[1], elements[2], elements[4]);
         }
@@ -105,6 +108,18 @@ public class Data
 
         //Add this new bird to the checklist it came from
         list.get(listIndex).bird.add(bird);
+    }
+    
+    public void outputChecklists ()
+    {
+        for (int i = 0; i < list.size(); i++)
+        {
+            System.out.println(list.get(i).toFile());
+            for (int j = 0; j < list.get(i).bird.size(); j++)
+            {
+                System.out.print(list.get(i).bird.get(j).toFile());
+            }
+        }
     }
     
 }

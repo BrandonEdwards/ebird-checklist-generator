@@ -68,7 +68,20 @@ public class Checklist
         this.comments = comments;
     }
     
-    
-    
-    
+    public String toFile ()
+    {
+        String header;
+        header = "**********************************************************\n";
+        header = header + "\t\t\t\t\t\t" + subID + "\n";
+        header = header + location + " (" + latitude + " " + longitude +  ")\n";
+        header = header + state_prov + " " + county + "\n\n";
+        header = header + date + " " + time + " (" + duration + " minutes)\n";
+        header = header + "Distance Travelled: " + distance + "km\n";
+        header = header + numObservers + " observers\n";
+        header = header + comments + "\n";
+        header = header + 
+                "**********************************************************\n";       
+        
+        return header;
+    }
 }
