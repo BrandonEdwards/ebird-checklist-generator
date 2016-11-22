@@ -2,6 +2,7 @@ package ebirdlistgenerator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -114,10 +115,15 @@ public class Data
     {
         for (int i = 0; i < list.size(); i++)
         {
-            System.out.println(list.get(i).toFile());
-            for (int j = 0; j < list.get(i).bird.size(); j++)
+            try
             {
-                System.out.print(list.get(i).bird.get(j).toFile());
+                String filename = "output\\" + list.get(i).getSubID() + ".txt";
+                PrintWriter fileWriter = new PrintWriter(filename, "UTF-8");
+                fileWriter.print(list.get(i).toFile());
+                fileWriter.close();
+            }catch (Exception e)
+            {
+                System.out.println("Failed to write.");
             }
         }
     }
