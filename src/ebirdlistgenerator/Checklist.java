@@ -80,7 +80,12 @@ public class Checklist
         header = header + numObservers + " observers\n";
         header = header + comments + "\n";
         header = header + 
-                "**********************************************************\n";       
+                "**********************************************************\n";
+        
+        for (int j = 0; j < bird.size(); j++)
+        {
+            header = header + bird.get(j).toFile();
+        }
         
         return header;
     }
