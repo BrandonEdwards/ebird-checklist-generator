@@ -128,4 +128,22 @@ public class Data
         }
     }
     
+    public void outputChecklists (String filetype)
+    {
+        filetype = filetype.toLowerCase();
+        for (int i = 0; i < list.size(); i++)
+        {
+            try
+            {
+                String filename = "output\\" + list.get(i).getSubID() + "." + filetype;
+                PrintWriter fileWriter = new PrintWriter(filename, "UTF-8");
+                fileWriter.print(list.get(i).toFile());
+                fileWriter.close();
+            }catch (Exception e)
+            {
+                System.out.println("Failed to write.");
+            }
+        }        
+    }
+    
 }
