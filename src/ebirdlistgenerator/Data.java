@@ -33,6 +33,7 @@ public class Data
                 if (firstLine)
                 {
                     firstLine = false;
+                    file.nextLine();
                 }
                 else
                 {
