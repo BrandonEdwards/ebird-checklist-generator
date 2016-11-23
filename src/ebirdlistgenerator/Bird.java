@@ -51,4 +51,17 @@ public class Bird
         
         return bird;
     }
+    
+    public String toHTMLFile ()
+    {
+        String output = "";
+        
+        output = output + "		<td>" + commonName + "</td>\n";
+        output = output + "		<td><i>" + scientificName + "</i></td>\n";
+        output = output + "		<td>" + count + "</td>\n";
+        output = output + "		<td>" + breedingCode + "</td>\n";
+        output = output + "		<td>" + comments + "</td>\n";
+        
+        return output;
+    }
 }
