@@ -46,8 +46,8 @@ public class Bird
     {
         String bird;
         
-        bird = commonName + " (" + scientificName + ")\t\t" + count + "\n";
-        bird = bird + "\t\t" + comments + "\n";
+        bird = commonName + " (" + scientificName + ")\t\t" + count + "\r\n";
+        bird = bird + "\t\t" + comments + "\r\n";
         
         return bird;
     }

@@ -10,12 +10,16 @@ public class Checklist
     
     public Checklist ()
     {
+        subID = state_prov = county = location = latitude = longitude = 
+            date = time = duration = distance = area = numObservers = comments = "";
         bird = new ArrayList<>();
     }
     
     public Checklist (String subID)
     {
         this.subID = subID;
+        state_prov = county = location = latitude = longitude = 
+            date = time = duration = distance = area = numObservers = comments = "";
         bird = new ArrayList<>();
     }
     
@@ -71,16 +75,16 @@ public class Checklist
     public String toFile ()
     {
         String header;
-        header = "**********************************************************\n";
-        header = header + "\t\t\t\t\t\t" + subID + "\n";
-        header = header + location + " (" + latitude + " " + longitude +  ")\n";
-        header = header + state_prov + " " + county + "\n\n";
-        header = header + date + " " + time + " (" + duration + " minutes)\n";
-        header = header + "Distance Travelled: " + distance + "km\n";
-        header = header + numObservers + " observers\n";
-        header = header + comments + "\n";
+        header = "**********************************************************\r\n";
+        header = header + "\t\t\t\t\t\t" + subID + "\r\n";
+        header = header + location + " (" + latitude + " " + longitude +  ")\r\n";
+        header = header + state_prov + " " + county + "\r\n";
+        header = header + date + " " + time + " (" + duration + " minutes)\r\n";
+        header = header + "Distance Travelled: " + distance + "km\r\n";
+        header = header + numObservers + " observers\r\n";
+        header = header + comments + "\r\n";
         header = header + 
-                "**********************************************************\n";
+                "**********************************************************\r\n";
         
         for (int j = 0; j < bird.size(); j++)
         {
