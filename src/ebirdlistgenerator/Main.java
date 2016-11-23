@@ -6,6 +6,6 @@ public class Main
     {
         Data data = new Data();
         data.loadData("MyEBirdData.csv");
-        data.outputChecklists();
+        data.outputChecklists("html");
     }
 }

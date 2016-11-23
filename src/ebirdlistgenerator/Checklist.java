@@ -93,4 +93,76 @@ public class Checklist
         
         return header;
     }
+    
+    public String toHTMLFile ()
+    {
+        String output;
+        //setup table styling for bird species
+        output = "<style>\n" +
+                "table {\n" +
+                "    font-family: arial, sans-serif;\n" +
+                "    border-collapse: collapse;\n" +
+                "    width: 100%;\n" +
+                "}\n" +
+                "\n" +
+                "td, th {\n" +
+                "    border: 1px solid #dddddd;\n" +
+                "    text-align: left;\n" +
+                "    padding: 8px;\n" +
+                "}\n" +
+                "\n" +
+                "th {\n" +
+                "    background-color: #dddddd;\n" +
+                "}\n" +
+                "</style>\n\n";
+        //Output location
+        output = output + "<h2>" + location + " (" + latitude + " " + longitude
+                + ") " + state_prov + " " + county + "</h2>\n";
+        
+        //Output submission ID and link to the ebird checklist
+        output = output + "<p><b>Submission ID: </b><a href=\"http://ebird.org/ebird/view/checklist/" + 
+        subID + "\">" + subID + "</a></p>\n";
+        
+        //Output date and time
+        output = output + "<p><b>Date and Time:</b> " + date + " " + time + " (" 
+                + duration + " minutes)</p>\n";
+        
+        if (distance.isEmpty())
+            distance = "0";
+        //Output distance travelled
+        output = output + "<p><b>Distance Travelled:</b> " + distance + " km</p>\n";
+        
+        //Output number of observers
+        output = output + "<p><b>Number of Observers: </b>" + numObservers + "</p>\n";
+        
+        if (!comments.isEmpty())
+        {
+            //Output checklist comments
+            output = output + "<p><b>Comments/Notes: </b>" + comments + "</p>\n";                
+        }
+    
+        
+        //Set up table headers
+        output = output + "<hr />\n" +
+                            "\n" +
+                            "<table>\n" +
+                            "	<tr>\n" +
+                            "		<th>Common Name</th>\n" +
+                            "		<th>Scientific Name</th>\n" +
+                            "		<th>Count</th>\n" +
+                            "		<th>Breeding Code</th>\n" +
+                            "		<th>Additional Comments</th>\n" +
+                            "	</tr>\n";
+        
+        for (int j = 0; j < bird.size(); j++)
+        {
+            output = output + "    <tr>\n";
+            output = output + bird.get(j).toHTMLFile();
+            output = output + "    </tr>\n";
+        }
+        
+        output = output + "</table>\n";
+        
+        return output;
+    }
 }

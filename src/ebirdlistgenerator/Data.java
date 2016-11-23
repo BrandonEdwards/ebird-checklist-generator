@@ -137,7 +137,15 @@ public class Data
             {
                 String filename = "output\\" + list.get(i).getSubID() + "." + filetype;
                 PrintWriter fileWriter = new PrintWriter(filename, "UTF-8");
-                fileWriter.print(list.get(i).toFile());
+                if (filetype.equals("html"))
+                {
+                    fileWriter.print(list.get(i).toHTMLFile());                    
+                }
+                else
+                {
+                    fileWriter.print(list.get(i).toFile());
+                }
+
                 fileWriter.close();
             }catch (Exception e)
             {
