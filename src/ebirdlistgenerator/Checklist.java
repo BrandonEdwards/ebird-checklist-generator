@@ -1,6 +1,9 @@
 package ebirdlistgenerator;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Checklist 
 {
@@ -94,27 +97,14 @@ public class Checklist
         return header;
     }
     
-    public String toHTMLFile ()
+    public String toHTMLFile () throws FileNotFoundException
     {
-        String output;
+        String htmlStyle;
+        String tableHead;
+        String output = "";
         //setup table styling for bird species
-        output = "<style>\n" +
-                "table {\n" +
-                "    font-family: arial, sans-serif;\n" +
-                "    border-collapse: collapse;\n" +
-                "    width: 100%;\n" +
-                "}\n" +
-                "\n" +
-                "td, th {\n" +
-                "    border: 1px solid #dddddd;\n" +
-                "    text-align: left;\n" +
-                "    padding: 8px;\n" +
-                "}\n" +
-                "\n" +
-                "th {\n" +
-                "    background-color: #dddddd;\n" +
-                "}\n" +
-                "</style>\n\n";
+        output = output + new Scanner(new File("htmlStyle.html")).useDelimiter("\\Z").next();
+
         //Output location
         output = output + "<h2>" + location + " (" + latitude + " " + longitude
                 + ") " + state_prov + " " + county + "</h2>\n";
@@ -143,16 +133,7 @@ public class Checklist
     
         
         //Set up table headers
-        output = output + "<hr />\n" +
-                            "\n" +
-                            "<table>\n" +
-                            "	<tr>\n" +
-                            "		<th>Common Name</th>\n" +
-                            "		<th>Scientific Name</th>\n" +
-                            "		<th>Count</th>\n" +
-                            "		<th>Breeding Code</th>\n" +
-                            "		<th>Additional Comments</th>\n" +
-                            "	</tr>\n";
+        output = output + new Scanner(new File("tableStyle.html")).useDelimiter("\\Z").next();
         
         for (int j = 0; j < bird.size(); j++)
         {
