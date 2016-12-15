@@ -8,7 +8,7 @@ Sample data can be seen in the file "MyEBirdData.csv".
 ##Sample Output
 Sample output for plain text file can be seen at "S29649202.txt"
 
-Sample output for HTML file can be seen [here](http://bedwards144.github.io/S29972160.html)
+Sample output for HTML file can be seen [here](http://brandonedwards.github.io/S29972160.html)
 
 ##Future Implementations
 * Analysis of more eBird data
